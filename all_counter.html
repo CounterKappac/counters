@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezuniyet Zamanı</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        .counter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+            color: #333;
+        }
+        .counter h3 {
+            margin-bottom: 20px;
+        }
+        .countdown {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .passed-time {
+            font-size: 1.5em;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Countdown timers for graduation -->
+        <div class="counter">
+            <h3>Kaan'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="kaan-2025"></div>
+        </div>
+        <div class="counter">
+            <h3>Eren'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="eren-2025"></div>
+        </div>
+        <div class="counter">
+            <h3>Pamir'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="pamir-2028"></div>
+        </div>
+        <div class="counter">
+            <h3>Kaan'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="kaan-2028"></div>
+        </div>
+        <div class="counter">
+            <h3>Oguz'un mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="oguz-2028"></div>
+        </div>
+        <div class="counter">
+            <h3>Bora'nin mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="bora-2028"></div>
+        </div>
+        <div class="counter">
+            <h3>Soykan'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="soykan-2028"></div>
+        </div>
+        <div class="counter">
+            <h3>Ufuk'un mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="ufuk-2027"></div>
+        </div>
+        <div class="counter">
+            <h3>Mehmet Can'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="mehmet-can-2027"></div>
+        </div>
+        <div class="counter">
+            <h3>Can Kam'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="can-kam-2027"></div>
+        </div>
+        <div class="counter">
+            <h3>Aral'in mezuniyetine kalan zaman</h3>
+            <div class="countdown" id="aral-2027"></div>
+        </div>
+
+        <!-- Counters for passed time -->
+        <div class="counter">
+            <h3>Sedat Ceyhan</h3>
+            <div class="passed-time" id="sedat-passed"></div>
+        </div>
+        <div class="counter">
+            <h3>Bora Demiral</h3>
+            <div class="passed-time" id="bora-passed"></div>
+        </div>
+        <div class="counter">
+            <h3>Chris Emre Demir</h3>
+            <div class="passed-time" id="chris-passed"></div>
+        </div>
+        <div class="counter">
+            <h3>Umut Ozturk</h3>
+            <div class="passed-time" id="umut-passed"></div>
+        </div>
+        <div class="counter">
+            <h3>Egemen Sahin</h3>
+            <div class="passed-time" id="egemen-passed"></div>
+        </div>
+        <div class="counter">
+            <h3>Arda Dumanli</h3>
+            <div class="passed-time" id="arda-passed"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown(targetDate, elementId) {
+            const graduationDate = new Date(targetDate);
+            const now = new Date();
+            const timeDifference = graduationDate - now;
+            
+            const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hoursRemaining = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesRemaining = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsRemaining = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById(elementId).textContent = `${daysRemaining} Gün ${hoursRemaining} Saat ${minutesRemaining} Dakika ${secondsRemaining} Saniye`;
+        }
+
+        function updatePassedTime(targetDate, personName, elementId) {
+            const targetDateObj = new Date(targetDate);
+            const now = new Date();
+            const timeDifference = now - targetDateObj;
+
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hoursPassed = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesPassed = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsPassed = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById(elementId).textContent = `${personName} mezun olalı ${daysPassed} Gün ${hoursPassed} Saat ${minutesPassed} Dakika ${secondsPassed} Saniye geçti.`;
+        }
+
+        // Graduation countdowns
+        function startCountdowns() {
+            updateCountdown('2025-06-15T00:00:00', 'kaan-2025');
+            updateCountdown('2025-06-15T00:00:00', 'eren-2025');
+            updateCountdown('2028-06-15T00:00:00', 'pamir-2028');
+            updateCountdown('2028-06-15T00:00:00', 'kaan-2028');
+            updateCountdown('2028-06-15T00:00:00', 'oguz-2028');
+            updateCountdown('2028-06-15T00:00:00', 'bora-2028');
+            updateCountdown('2028-06-15T00:00:00', 'soykan-2028');
+            updateCountdown('2027-06-15T00:00:00', 'ufuk-2027');
+            updateCountdown('2027-06-15T00:00:00', 'mehmet-can-2027');
+            updateCountdown('2027-06-15T00:00:00', 'can-kam-2027');
+            updateCountdown('2027-06-15T00:00:00', 'aral-2027');
+
+            // Passed time counters
+            updatePassedTime('2019-06-15T10:00:00', 'Sedat Ceyhan', 'sedat-passed');
+            updatePassedTime('2022-06-15T10:00:00', 'Bora Demiral', 'bora-passed');
+            updatePassedTime('2022-06-15T10:00:00', 'Chris Emre Demir', 'chris-passed');
+            updatePassedTime('2023-06-15T10:00:00', 'Umut Ozturk', 'umut-passed');
+            updatePassedTime('2023-06-15T10:00:00', 'Egemen Sahin', 'egemen-passed');
+            updatePassedTime('2024-06-15T10:00:00', 'Arda Dumanli', 'arda-passed');
+        }
+
+        // Update the counters every second
+        setInterval(startCountdowns, 1000);
+
+        // Initial call to set up the countdowns
+        startCountdowns();
+    </script>
+
+</body>
+</html>
